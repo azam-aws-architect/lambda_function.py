@@ -1,0 +1,12 @@
+import json
+
+def lambda_handler(event, context):
+    # SQS se aane wale orders (records) ko loop ke zariye read karna
+    for record in event['Records']:
+        order_details = record['body']
+        print(f"📦 Customer Order Received & Processed Successfully: {order_details}")
+        
+    return {
+        'statusCode': 200,
+        'body': json.dumps('All orders in this batch processed!')
+    }
